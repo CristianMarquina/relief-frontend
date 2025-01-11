@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-bookmarks',
+  selector: 'bookmarks',
   imports: [],
   templateUrl: './bookmarks.component.html',
-  styleUrl: './bookmarks.component.css'
+  styleUrl: './bookmarks.component.css',
 })
-export class BookmarksComponent {
-
-}
+export class BookmarksComponent {}

@@ -1,0 +1,23 @@
+<h1 class="flex items-center gap-4 p-4 bg-gray-100 rounded center-text">
+  Youtube Video Player
+</h1>
+<div class="flex items-center gap-4 p-4 bg-gray-100 rounded">
+  <input
+    type="text"
+    [(ngModel)]="videoUrl"
+    placeholder="Enter YouTube Video URL"
+    class="flex-1 p-2 border rounded focus:outline-none focus:ring focus:ring-blue-400"
+  />
+  <input
+    type="text"
+    [(ngModel)]="videoName"
+    placeholder="Name as you want to save"
+    class="flex-1 p-2 border rounded focus:outline-none focus:ring focus:ring-blue-400"
+  />
+  <button
+    (click)="addVideo()"
+    class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+  >
+    Add Video
+  </button>
+</div>

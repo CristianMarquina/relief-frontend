@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-history',
+  selector: 'history',
   imports: [],
   templateUrl: './history.component.html',
-  styleUrl: './history.component.css'
+  styleUrl: './history.component.css',
 })
-export class HistoryComponent {
-
-}
+export class HistoryComponent {}
