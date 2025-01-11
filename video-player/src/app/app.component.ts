@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import {
+  SearchbarComponent,
+  SearchdData,
+} from './components/searchbar/searchbar.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { VideoViewComponent } from './components/video-view/video-view.component';
 import { HistoryComponent } from './components/history/history.component';
-import { empty } from 'rxjs';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,9 @@ import { EventEmitter } from 'stream';
 })
 export class AppComponent {
   title = 'video-player';
-  onVideoAdded(e: Object) {
+  videoUrl: string = '';
+  onVideoAdded(e: SearchdData) {
     console.log(e);
+    this.videoUrl = e.url;
   }
 }

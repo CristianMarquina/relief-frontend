@@ -1,1 +1,18 @@
-<p>video-view works!</p>
+<div class="p-4 bg-gray-50 rounded w-full h-full">
+  @if(videoId){
+  <div>
+    <iframe
+      [src]="videoUrl"
+      width="100%"
+      height="360"
+      frameborder="0"
+      allowfullscreen
+      class="rounded shadow"
+    ></iframe>
+  </div>
+  } @else {
+  <div class="flex items-center justify-center h-36 bg-gray-200 rounded">
+    <p class="text-gray-500">No video selected</p>
+  </div>
+  }
+</div>

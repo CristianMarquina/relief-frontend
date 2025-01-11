@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
+export type SearchdData = {
+  url: string;
+  name: string | null;
+};
 @Component({
   selector: 'searchbar',
   imports: [FormsModule],
@@ -13,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchbarComponent {
   videoUrl: string = '';
   videoName: string = '';
-  @Output() videoAdded = new EventEmitter<Object>();
+  @Output() videoAdded = new EventEmitter<SearchdData>();
 
   addVideo() {
     if (this.videoUrl.trim() && this.videoUrl.trim()) {

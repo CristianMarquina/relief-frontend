@@ -6,8 +6,8 @@
   </div>
   <div class="flex flex-col items-center justify-center w-3/4 h-full">
     <searchbar (videoAdded)="onVideoAdded($event)"></searchbar>
-
-    <video-view></video-view>
+    <video-view [videoUrl]="videoUrl"></video-view>
+    <bookmarks></bookmarks>
   </div>
 </main>
 
