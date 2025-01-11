@@ -1,1 +1,42 @@
-<p>history works!</p>
+<div class="p-4 bg-gray-50 rounded w-full h-full shadow flex flex-col">
+  <h2 class="text-lg font-bold text-gray-700 mb-4">History</h2>
+
+  @if(historyList.length > 0){
+  <ul class="space-y-2 overflow-auto">
+    <li
+      *ngFor="let item of historyList; let i = index"
+      class="p-2 bg-white rounded shadow flex justify-between items-center"
+    >
+      <div>
+        <p class="text-sm font-medium text-gray-800">{{ item.name }}</p>
+        <a
+          [href]="item.url"
+          target="_blank"
+          class="text-xs text-blue-500 underline hover:text-blue-700"
+          [title]="item.url"
+        >
+          {{ truncateUrl(item.url, 50) }}
+        </a>
+      </div>
+      <div class="flex space-x-2">
+        <button
+          (click)="onSelectHistory(item.url)"
+          class="px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600 transition"
+        >
+          Play
+        </button>
+        <button
+          (click)="onDeleteHistory(i)"
+          class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+  } @else {
+  <div class="flex-1 flex items-center justify-center">
+    <p class="text-gray-500 text-sm">Without History</p>
+  </div>
+  }
+</div>
