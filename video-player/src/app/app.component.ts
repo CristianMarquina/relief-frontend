@@ -23,14 +23,7 @@ import { HistoryComponent } from './components/history/history.component';
 export class AppComponent {
   title = 'video-player';
   videoUrl: string = '';
-  //historyList: { name: string; url: string }[] = [];
-  historyList: { name: string; url: string }[] = [
-    /*{ name: 'Video 1', url: 'https://www.youtube.com/watch?v=OxnHWPtiBOI' },
-    {
-      name: 'Video 2',
-      url: 'https://www.youtube.com/watch?v=_t8HWppY4T0&list=PL5gy95X4kdAhllolA8bLRxONt3RTBs8ZD&index=2',
-    },*/
-  ];
+  historyList: { name: string; url: string }[] = [];
   onVideoAdded(e: SearchdData) {
     console.log(e);
     this.videoUrl = e.url;
@@ -43,5 +36,10 @@ export class AppComponent {
 
   onHistoryDeleted(index: number) {
     this.historyList.splice(index, 1);
+  }
+
+  onBookmarkSelect(e: SearchdData) {
+    this.videoUrl = e.url;
+    console.log(`Reproduciendo desde bookmark: ${e.url}`);
   }
 }
