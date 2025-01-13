@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 export interface SearchdData {
   url: string;
   name?: string;
+  id: string;
 }
 
 @Injectable({
@@ -72,10 +73,13 @@ export class BaseApiService {
   }
 
   // POST add bookmark
-  addBookmark(bookmark: any): Observable<any> {
+  addBookmark(bookmark: SearchdData): Observable<any> {
+    const payload = {
+      historyid: bookmark.id,
+    };
     return new Observable((observer) => {
       axiosInstance
-        .post('/bookmarks', bookmark)
+        .post('/bookmark', payload)
         .then((response) => {
           observer.next(response.data);
           observer.complete();
@@ -88,7 +92,7 @@ export class BaseApiService {
   deleteBookmark(id: string): Observable<any> {
     return new Observable((observer) => {
       axiosInstance
-        .delete(`/bookmarks/${id}`)
+        .delete(`/bookmark/${id}`)
         .then(() => {
           observer.next({ message: 'Deleted successfully' });
           observer.complete();

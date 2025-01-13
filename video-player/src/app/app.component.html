@@ -11,7 +11,9 @@
     <video-view [videoUrl]="videoUrl"></video-view>
     <bookmarks
       [bookmarkList]="bookmarkList"
-      [currentVideo]="{ url: videoUrl, name: videoUrl }"
+      [currentVideo]="{ url: videoUrl, name: videoName, id: videoId }"
+      (BookmarkAdded)="onBookmarkAdded($event)"
+      (deleteBookmark)="onBookmarkDeleted($event)"
       (playVideo)="onBookmarkSelect($event)"
     ></bookmarks>
   </div>

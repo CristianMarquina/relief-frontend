@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 export type SearchdData = {
   url: string;
   name: string | null;
+  id: string;
 };
 @Component({
   selector: 'searchbar',
@@ -17,22 +18,27 @@ export type SearchdData = {
 export class SearchbarComponent {
   videoUrl: string = '';
   videoName: string = '';
+  videoId: string = '';
   @Output() videoAdded = new EventEmitter<SearchdData>();
   constructor(private baseApiService: BaseApiService) {}
 
   addVideo() {
-    console.log('en el 111111');
     if (this.videoUrl.trim() && this.videoUrl.trim()) {
-      console.log('22222222222222222222');
-      const historyData = { url: this.videoUrl, name: this.videoName };
-      console.log('3333333333333333333333333333');
+      const historyData = {
+        url: this.videoUrl,
+        name: this.videoName,
+        id: '',
+      };
       this.baseApiService.addHistory(historyData).subscribe({
         next: (response) => {
-          console.log('77777777777777777777777');
-          console.log('Video added successfully:', response);
-          this.videoAdded.emit(historyData);
+          this.videoAdded.emit({
+            url: response.history.url,
+            name: response.history.name,
+            id: response.history.id,
+          });
           this.videoUrl = '';
           this.videoName = '';
+          this.videoId = '';
         },
         error: (error) => {
           console.error('Error adding video:', error);

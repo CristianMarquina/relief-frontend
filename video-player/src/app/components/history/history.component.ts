@@ -14,7 +14,7 @@ import { SearchdData } from '../searchbar/searchbar.component';
 export class HistoryComponent {
   @Input() historyList: { name: string; url: string; id: string }[] = [];
   @Output() selectHistory = new EventEmitter<SearchdData>();
-  @Output() deleteHistory = new EventEmitter<number>();
+  @Output() deleteHistory = new EventEmitter<SearchdData>();
   isSidebarOpen: boolean = true;
 
   onToggleSidebar() {
@@ -22,11 +22,11 @@ export class HistoryComponent {
   }
 
   onSelectHistory(url: string) {
-    this.selectHistory.emit({ url: url, name: url });
+    this.selectHistory.emit({ url: url, name: url, id: url });
   }
 
-  onDeleteHistory(index: number) {
-    this.deleteHistory.emit(index);
+  onDeleteHistory(e: SearchdData) {
+    this.deleteHistory.emit(e);
   }
 
   truncateUrl(url: string, maxLength: number = 50): string {

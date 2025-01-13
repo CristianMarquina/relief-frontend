@@ -38,13 +38,13 @@
       </div>
       <div class="flex space-x-2">
         <button
-          (click)="onSelectBookmark(bookmark.url)"
+          (click)="onSelectBookmark(bookmark.url, bookmark.name, bookmark.id)"
           class="px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600 transition"
         >
           Play
         </button>
         <button
-          (click)="onDeleteBookmark(i)"
+          (click)="onDeleteBookmark(bookmark)"
           class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition"
         >
           Delete
