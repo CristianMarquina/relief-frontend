@@ -1,7 +1,7 @@
 <div class="p-4 bg-gray-100 rounded shadow">
   <div class="flex justify-between items-center mb-4 text-center">
     <h3 class="text-lg font-semibold text-center">Bookmarks</h3>
-    <span class="text-sm text-gray-700">Total: {{ bookmarksList.length }}</span>
+    <span class="text-sm text-gray-700">Total: {{ bookmarkList.length }}</span>
   </div>
   <div class="flex justify-between mb-4">
     <button
@@ -22,7 +22,7 @@
   @if(showBookmarks){
   <ul class="mt-4 space-y-2 overflow-auto max-h-60 bg-white p-2 rounded">
     <li
-      *ngFor="let bookmark of bookmarksList; let i = index"
+      *ngFor="let bookmark of bookmarkList; let i = index"
       class="p-2 bg-gray-50 rounded shadow flex justify-between items-center"
     >
       <div>

@@ -10,6 +10,7 @@
     <searchbar (videoAdded)="onVideoAdded($event)"></searchbar>
     <video-view [videoUrl]="videoUrl"></video-view>
     <bookmarks
+      [bookmarkList]="bookmarkList"
       [currentVideo]="{ url: videoUrl, name: videoUrl }"
       (playVideo)="onBookmarkSelect($event)"
     ></bookmarks>

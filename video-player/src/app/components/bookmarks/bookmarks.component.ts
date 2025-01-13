@@ -9,15 +9,17 @@ import { SearchdData } from '../searchbar/searchbar.component';
   styleUrls: ['./bookmarks.component.css'],
 })
 export class BookmarksComponent {
-  @Input() currentVideo: { name: string; url: string } | null = null;
+  @Input() bookmarkList: { name: string; url: string; id: string }[] = [];
+  @Input() currentVideo: { name: string; url: string; id: string } | null =
+    null;
   @Output() playVideo = new EventEmitter<SearchdData>();
 
   @Output() selectHistory = new EventEmitter<SearchdData>();
-  bookmarksList: { name: string; url: string }[] = [];
+  //bookmarksList: { name: string; url: string; id: string }[] = [];
   showBookmarks = false;
   addBookmark(): void {
     if (this.currentVideo) {
-      this.bookmarksList.push({ ...this.currentVideo });
+      //this.bookmarksList.push({ ...this.currentVideo });
     }
   }
 
@@ -30,7 +32,7 @@ export class BookmarksComponent {
   }
 
   onDeleteBookmark(index: number): void {
-    this.bookmarksList.splice(index, 1);
+    //bookmarksList.splice(index, 1);
   }
 
   truncateUrl(url: string, maxLength: number): string {

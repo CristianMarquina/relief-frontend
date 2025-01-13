@@ -12,7 +12,7 @@ import { SearchdData } from '../searchbar/searchbar.component';
   styleUrls: ['./history.component.css'],
 })
 export class HistoryComponent {
-  @Input() historyList: { name: string; url: string }[] = [];
+  @Input() historyList: { name: string; url: string; id: string }[] = [];
   @Output() selectHistory = new EventEmitter<SearchdData>();
   @Output() deleteHistory = new EventEmitter<number>();
   isSidebarOpen: boolean = true;
