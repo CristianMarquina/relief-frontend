@@ -16,13 +16,16 @@ export class HistoryComponent {
   @Output() selectHistory = new EventEmitter<SearchdData>();
   @Output() deleteHistory = new EventEmitter<SearchdData>();
   isSidebarOpen: boolean = true;
+  selectedId: string = '';
+  //selectedName: string = '';
 
   onToggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
-  onSelectHistory(url: string) {
-    this.selectHistory.emit({ url: url, name: url, id: url });
+  onSelectHistory(url: string, name: string, id: string) {
+    this.selectedId = id;
+    this.selectHistory.emit({ url: url, name: name, id: id });
   }
 
   onDeleteHistory(e: SearchdData) {

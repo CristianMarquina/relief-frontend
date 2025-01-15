@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { NgModule } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseApiService } from '../../services/base-api.service';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 import { FormsModule } from '@angular/forms';
 export type SearchdData = {
@@ -11,7 +10,7 @@ export type SearchdData = {
 };
 @Component({
   selector: 'searchbar',
-  imports: [FormsModule],
+  imports: [FormsModule, MatIconModule],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css',
 })
@@ -19,6 +18,8 @@ export class SearchbarComponent {
   videoUrl: string = '';
   videoName: string = '';
   videoId: string = '';
+  @Input() currentVideo: { name: string; url: string; id: string } | null =
+    null;
   @Output() videoAdded = new EventEmitter<SearchdData>();
   constructor(private baseApiService: BaseApiService) {}
 

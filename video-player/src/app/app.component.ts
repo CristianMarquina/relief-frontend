@@ -43,8 +43,6 @@ export class AppComponent {
     });
     this.baseApiService.getBookmarks().subscribe({
       next: (response) => {
-        console.log('getBookmarks cargado al iniciar la página:');
-        console.log(response);
         const bookmarks = response.bookmarks.map((bookmark: any) => ({
           id: bookmark.id,
           name: bookmark.history.name,
@@ -52,10 +50,6 @@ export class AppComponent {
         }));
 
         this.bookmarkList = [...bookmarks];
-        console.log(
-          'getBookmarks cargado al iniciar la página: depsues de actualizarlos'
-        );
-        console.log(this.bookmarkList);
       },
       error: (error) => {
         console.error('Error al obtener el historial:', error);
@@ -81,8 +75,6 @@ export class AppComponent {
   onBookmarkAdded(e: SearchdData) {
     this.baseApiService.getBookmarks().subscribe({
       next: (response) => {
-        console.log('getBookmarks cargado al nuevooo la página:');
-        console.log(response);
         const bookmarks = response.bookmarks.map((bookmark: any) => ({
           id: bookmark.id,
           name: bookmark.history.name,
@@ -90,8 +82,6 @@ export class AppComponent {
         }));
 
         this.bookmarkList = [...bookmarks];
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        console.log(this.bookmarkList);
       },
       error: (error) => {
         console.error('Error al obtener el historial:', error);
@@ -101,6 +91,8 @@ export class AppComponent {
 
   onHistorySelected(e: SearchdData) {
     this.videoUrl = e.url;
+    this.videoId = e.id;
+    this.videoName = e.name ?? '';
   }
 
   onHistoryDeleted(e: SearchdData) {
@@ -109,28 +101,23 @@ export class AppComponent {
         this.deleteHistoryById(e.id);
       },
       error: (error) => {
-        console.error('Error al obtener el historial:', error);
+        console.error('Error getting history:', error);
       },
     });
   }
   onBookmarkDeleted(e: SearchdData) {
-    console.log('onBookmarkDeleted');
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
     this.baseApiService.deleteBookmark(e.id).subscribe({
       next: (response) => {
-        console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
-        console.log(response);
-        this.deleteHistoryById(e.id);
+        this.deleteBookmarkById(e.id);
       },
       error: (error) => {
-        console.error('Error al obtener el historial:', error);
+        console.error('Error gettitng the bookmark:', error);
       },
     });
   }
 
   onBookmarkSelect(e: SearchdData) {
     this.videoUrl = e.url;
-    console.log(`Reproduciendo desde bookmark: ${e.url}`);
   }
   deleteHistoryById(idToDelete: string) {
     const index = this.historyList.findIndex(
@@ -139,9 +126,8 @@ export class AppComponent {
 
     if (index !== -1) {
       this.historyList.splice(index, 1);
-      console.log('Elemento eliminado correctamente');
     } else {
-      console.log('No se encontró el elemento con el ID especificado');
+      console.log('dint find the element with the specified ID');
     }
   }
   deleteBookmarkById(idToDelete: string) {
@@ -151,9 +137,8 @@ export class AppComponent {
 
     if (index !== -1) {
       this.bookmarkList.splice(index, 1);
-      console.log('Elemento eliminado correctamente');
     } else {
-      console.log('No se encontró el elemento con el ID especificado');
+      console.log('dint find the element with the specified ID');
     }
   }
 }

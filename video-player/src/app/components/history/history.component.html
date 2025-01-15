@@ -3,25 +3,20 @@
   [ngClass]="{ 'w-32': !isSidebarOpen, 'w-96': isSidebarOpen }"
 >
   <button
-    mat-mini-fab
-    aria-label="Example icon button with a menu icon"
+    class="px-4 py-2 bg-slate-300 hover:bg-slate-400 rounded-md duration-200 font-bold text-black"
     (click)="onToggleSidebar()"
   >
-    <mat-icon>menu</mat-icon>
+    History
   </button>
 
-  <h2
-    class="text-lg font-bold text-gray-700 mb-4 w-full text-center"
-    [ngClass]="{ hidden: !isSidebarOpen }"
-  >
-    History
-  </h2>
-
-  @if(historyList.length > 0){
+  @if (historyList.length > 0) {
   <ul class="space-y-2 overflow-auto" [ngClass]="{ hidden: !isSidebarOpen }">
+    @for (item of historyList; track $index) {
     <li
-      *ngFor="let item of historyList; let i = index"
-      class="p-2 bg-white rounded shadow flex justify-between items-center"
+      class="my-2 p-2 bg-white rounded shadow flex justify-between items-center"
+      [ngClass]="{
+        'bg-slate-300': item.id === selectedId
+      }"
     >
       <div>
         <p class="text-sm font-medium text-gray-800">{{ item.name }}</p>
@@ -36,19 +31,20 @@
       </div>
       <div class="flex space-x-2">
         <button
-          (click)="onSelectHistory(item.url)"
-          class="px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-green-600 transition"
+          (click)="onSelectHistory(item.url, item.name, item.id)"
+          class="p-2 text-sm text-white flex items-center justify-center bg-slate-300 rounded hover:bg-slate-400 transition"
         >
-          Play
+          <mat-icon class="text-blue-400">skip_next</mat-icon>
         </button>
         <button
           (click)="onDeleteHistory(item)"
-          class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600 transition"
+          class="p-2 text-sm text-white flex items-center justify-center bg-slate-300 rounded hover:bg-slate-400 transition"
         >
-          Delete
+          <mat-icon class="text-red-400">delete</mat-icon>
         </button>
       </div>
     </li>
+    }
   </ul>
   } @else {
   <div

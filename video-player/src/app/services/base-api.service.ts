@@ -35,7 +35,6 @@ export class BaseApiService {
     };
 
     return new Observable((observer) => {
-      console.log('666666666666666');
       axiosInstance
         .post('/history', payload)
         .then((response) => {

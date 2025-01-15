@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { SearchdData } from '../searchbar/searchbar.component';
 import { BaseApiService } from '../../services/base-api.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'bookmarks',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './bookmarks.component.html',
   styleUrls: ['./bookmarks.component.css'],
 })
@@ -21,32 +22,25 @@ export class BookmarksComponent {
   //bookmarksList: { name: string; url: string; id: string }[] = [];
   showBookmarks = false;
   addBookmark(): void {
-    console.log('Add bookmark');
     if (this.currentVideo) {
-      console.log('22222222222222222222');
       const bookmarkData = {
         url: this.currentVideo.url,
         name: this.currentVideo.name,
         id: this.currentVideo.id,
       };
-      console.log('3333333333333333333333333333');
-      console.log(bookmarkData);
       this.baseApiService.addBookmark(bookmarkData).subscribe({
         next: (response) => {
-          console.log('77777777777777777777777');
-          console.log(response);
-          this.BookmarkAdded.emit({
-            url: response.history.url,
-            name: response.history.name,
-            id: response.history.id,
-          });
-          console.log('bookmark added successfully:', response);
+          const bookmarkData = {
+            url: this.currentVideo?.url ?? '',
+            name: this.currentVideo?.name ?? '',
+            id: response.id,
+          };
+          this.BookmarkAdded.emit(bookmarkData);
         },
         error: (error) => {
           console.error('Error adding video:', error);
         },
       });
-      //this.bookmarksList.push({ ...this.currentVideo });
     }
   }
 
